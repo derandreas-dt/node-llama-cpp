@@ -40,7 +40,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "postinstall": "node ./dist/cli/cli.js postinstall",
+    "postinstall": "npm run build && node ./dist/cli/cli.js postinstall",
     "prepare": "[ $CI = true ] || [ -d '.husky/_' ] || husky install",
     "prebuild": "rm -rf ./dist ./tsconfig.tsbuildinfo",
     "build": "tsc --build tsconfig.json --force",
