@@ -67,7 +67,7 @@ class LLAMAModel : public Napi::ObjectWrap<LLAMAModel> {
             }
 
             if (options.Has("gqa")) {
-                params.gqa = options.Get("gqa").As<Napi::Number>().Int32Value();
+                params.n_gqa = options.Get("gqa").As<Napi::Number>().Int32Value();
             }
         }
 

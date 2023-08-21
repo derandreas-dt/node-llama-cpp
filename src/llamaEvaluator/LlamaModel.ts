@@ -64,7 +64,7 @@ export class LlamaModel {
         embedding?: boolean
 
         /** group-query attention, required for llama 70B */
-        qua?: number,
+        gqa?: number,
     }) {
         this._model = new LLAMAModel(modelPath, removeNullFields({
             seed: seed != null ? Math.max(-1, seed) : undefined,
