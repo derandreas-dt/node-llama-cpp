@@ -65,6 +65,10 @@ class LLAMAModel : public Napi::ObjectWrap<LLAMAModel> {
             if (options.Has("embedding")) {
                 params.embedding = options.Get("embedding").As<Napi::Boolean>().Value();
             }
+
+            if (options.Has("gqa")) {
+                params.gqa = options.Get("gqa").As<Napi::Number>().Int32Value();
+            }
         }
 
         model = llama_load_model_from_file(modelPath.c_str(), params);
