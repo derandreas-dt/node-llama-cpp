@@ -21,10 +21,11 @@ export class LlamaModel {
      * @param {boolean} [options.useMmap] - use mmap if possible
      * @param {boolean} [options.useMlock] - force system to keep model in RAM
      * @param {boolean} [options.embedding] - embedding mode only
+     * @param {Number} [options.gqa] - grouped query attention value
      */
     public constructor({
         modelPath, seed = null, contextSize = 1024 * 4, batchSize, gpuLayers,
-        lowVram, f16Kv, logitsAll, vocabOnly, useMmap, useMlock, embedding
+        lowVram, f16Kv, logitsAll, vocabOnly, useMmap, useMlock, embedding, gqa
     }: {
         /** path to the model on the filesystem */
         modelPath: string,
@@ -61,6 +62,9 @@ export class LlamaModel {
 
         /** embedding mode only */
         embedding?: boolean
+
+        /** group-query attention, required for llama 70B */
+        qua?: number,
     }) {
         this._model = new LLAMAModel(modelPath, removeNullFields({
             seed: seed != null ? Math.max(-1, seed) : undefined,
@@ -73,7 +77,8 @@ export class LlamaModel {
             vocabOnly,
             useMmap,
             useMlock,
-            embedding
+            embedding,
+            gqa,
         }));
     }
 
