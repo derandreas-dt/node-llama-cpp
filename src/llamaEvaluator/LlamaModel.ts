@@ -78,7 +78,7 @@ export class LlamaModel {
             useMmap,
             useMlock,
             embedding,
-            gqa,
+            gqa
         }));
     }
 
